@@ -3,7 +3,7 @@
 import os, sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-import sys, time
+import time
 from lib.usb_port_finder import USBPortFinder
 from lib.smd_gateway import SMDGateway
 from lib.button import Button
