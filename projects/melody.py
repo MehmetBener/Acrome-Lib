@@ -49,7 +49,7 @@ def main():
     gw     = SMDGateway(port)
     buzzer = Buzzer(gw, module_id=5)
 
-    print("Playing Twinkle Twinkle Little Star...")
+    print("Playing melody...")
     try:
         play_melody(buzzer)
         print("Done.")
