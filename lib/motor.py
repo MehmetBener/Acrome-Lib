@@ -7,9 +7,6 @@ class Motor:
         self._gw = gateway
         self.cpr = cpr
 
-        # Optionally store default PID params or other state here
-        # e.g. self._vel_pid = (p, i, d), etc.
-
         # Configure encoder CPR immediately
         self._gw.set_shaft_cpr(cpr)
 
@@ -70,9 +67,6 @@ class Motor:
     def run_position(self, position: float):
         self.set_operation_mode(OperationMode.Position)
         self.enable_torque(True)
-        # Many SDKs: master.goTo(device_id, position) or set_position
-        # Here we assume method is named goTo or set_position in gateway:
-        # If SMDGateway had a wrapper:
         try:
             # Adjust as per actual SDK method name:
             self._gw._master.goTo(self._gw.device_id, position)

@@ -13,14 +13,7 @@ DEFAULT_MODULES = [
 ]
 
 class SMDGateway:
-    def __init__(
-        self,
-        port: str,
-        baudrate: int = 115200,
-        device_id: int = 0,
-        scan_timeout: float = 0.1,
-        modules_override: Optional[List[str]] = None,
-    ):
+    def __init__(self, port: str, baudrate: int = 115200, device_id: int = 0, scan_timeout: float = 0.1, modules_override: Optional[List[str]] = None):
         """
         port, baudrate, device_id: as before.
         scan_timeout: how long to wait after enabling scan engine.
@@ -33,14 +26,7 @@ class SMDGateway:
         # Attach the Red protocol
         self._master.attach(Red(device_id))
 
-                        # Monkey-patch missing Master methods for sensors:
-        def _idx(key: str):
-            for m in Index:
-                if key.lower() in m.name.lower():
-                    return m
-            raise AttributeError(f"No Index member matching '{key}'")
-
-                # Monkey-patch missing Master methods for sensors:
+        # Monkey-patch missing Master methods for sensors:
         def _idx(key: str):
             for m in Index:
                 if key.lower() in m.name.lower():
@@ -136,7 +122,7 @@ class SMDGateway:
                 print(f"⚠ scan failed, falling back to DEFAULT_MODULES: {modules}")
 
         self._master.set_connected_modules(device_id, modules)
-        print(f"✅ Registered modules: {modules}")
+        print(f"Registered modules: {modules}")
 
     # Convenience wrappers
     def set_rgb(self, module_id: int, rgb: Tuple[int, int, int]):

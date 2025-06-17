@@ -17,11 +17,7 @@ class Led:
     def off(self):
         self._write((0, 0, 0))
 
-    def blink(self,
-              on_rgb: Tuple[int, int, int] = (255, 0, 0),
-              off_rgb: Tuple[int, int, int] = (0, 0, 0),
-              period: float = 0.5,
-              cycles: Optional[int] = None):
+    def blink(self, on_rgb: Tuple[int, int, int] = (255, 0, 0), off_rgb: Tuple[int, int, int] = (0, 0, 0), period: float = 0.5, cycles: Optional[int] = None):
         print(f"[Led] Starting blink: on={on_rgb}, off={off_rgb}, period={period}, cycles={cycles}")
         try:
             n = 0
