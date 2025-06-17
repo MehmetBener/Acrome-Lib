@@ -124,7 +124,7 @@ class MorseGUI(tk.Tk):
             self.tx_btn.state(["!disabled"])
             self.progress["value"] = 0
 
-    def _update_progress(self, pct):  # GUI-safe because progressbar is thread-safe for simple .configure
+    def _update_progress(self, pct):
         self.progress["value"] = pct
 
     def _on_close(self):
