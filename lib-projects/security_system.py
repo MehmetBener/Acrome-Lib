@@ -1,4 +1,4 @@
-### projects/security_system.py
+### lib-projects/security_system.py
 
 import os, sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))

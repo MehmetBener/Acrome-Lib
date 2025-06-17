@@ -1,4 +1,4 @@
-# projects/haptic_traffic_signal.py
+# lib-projects/haptic_traffic_signal.py
 
 import os, sys
 import time

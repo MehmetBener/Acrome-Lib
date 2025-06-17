@@ -1,4 +1,4 @@
-# projects/morse_code.py
+# lib-projects/morse_code.py
 #
 # Tkinter GUI for Morse-code transmitter + live code display
 # ----------------------------------------------------------
