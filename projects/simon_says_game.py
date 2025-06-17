@@ -67,7 +67,14 @@ class SimonSaysApp(tk.Tk):
 
         self.sequence = []
         self.user_index = 0
+        
+        self.device.led_color(*COLORS[0][1])
+        self.device.beep(0.1)
+        self.device.led_off()
+        time.sleep(1.0)
+        
         self._build_ui()
+        
 
     def _build_ui(self):
         btn_frame = ttk.Frame(self)
