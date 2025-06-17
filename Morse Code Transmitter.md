@@ -61,8 +61,6 @@ Modify the DOT\_DURATION constant to speed up or slow down transmission.
 * Connect the the [RGB LED Module](https://docs.acrome.net/electronics/add-on-modules/rgb-led-module) and the [Buzzer Module](https://docs.acrome.net/electronics/add-on-modules/buzzer-module) to the SMD using an RJ-45 cable.  
 * Make sure that the SMD is powered and all connections are correct.
 
-## **Project Wiring Diagram**
-
 # **Step 3: Run & Test**
 
 1. **Install Libraries and Run the Script**  
