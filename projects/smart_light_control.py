@@ -21,8 +21,9 @@ def main():
     try:
         while True:
             v = pot.read()  # 0.0–1.0
-            intensity = int(v * 255)
-            led.set_color(intensity, intensity, 0)  # warm yellow dimming
+            print(v)
+            intensity = int(v)
+            led.on((intensity, intensity, 0))  # warm yellow dimming
             time.sleep(0.05)
     except KeyboardInterrupt:
         pass
