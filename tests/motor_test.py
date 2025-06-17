@@ -5,7 +5,6 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 import sys
 import time
-from smd.red import OperationMode
 
 from lib.usb_port_finder import USBPortFinder
 from lib.smd_gateway import SMDGateway
@@ -29,7 +28,7 @@ def main():
     motor.configure_position_control(p=0.5, i=0.0, d=20.0)
     motor.configure_torque_control(p=3.0, i=0.1, d=0.0)
     
-    pwm = -60
+    pwm = -90
     wait_dur = 0.5
     
     for i in range(2):
