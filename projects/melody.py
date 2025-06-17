@@ -18,22 +18,16 @@ NOTES = {
 # full "Twinkle Twinkle Little Star" melody
 # (note, duration in seconds)
 MELODY = [
-    # Twinkle, twinkle, little star
     ('C4', 0.3), ('C4', 0.3), ('G4', 0.3), ('G4', 0.3),
     ('A4', 0.3), ('A4', 0.3), ('G4', 0.6),
-    # How I wonder what you are
     ('F4', 0.3), ('F4', 0.3), ('E4', 0.3), ('E4', 0.3),
     ('D4', 0.3), ('D4', 0.3), ('C4', 0.6),
-    # Up above the world so high
     ('G4', 0.3), ('G4', 0.3), ('F4', 0.3), ('F4', 0.3),
     ('E4', 0.3), ('E4', 0.3), ('D4', 0.6),
-    # Like a diamond in the sky
     ('G4', 0.3), ('G4', 0.3), ('F4', 0.3), ('F4', 0.3),
     ('E4', 0.3), ('E4', 0.3), ('D4', 0.6),
-    # Twinkle, twinkle, little star
     ('C4', 0.3), ('C4', 0.3), ('G4', 0.3), ('G4', 0.3),
     ('A4', 0.3), ('A4', 0.3), ('G4', 0.6),
-    # How I wonder what you are
     ('F4', 0.3), ('F4', 0.3), ('E4', 0.3), ('E4', 0.3),
     ('D4', 0.3), ('D4', 0.3), ('C4', 0.6),
 ]
