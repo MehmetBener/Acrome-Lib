@@ -15,13 +15,13 @@ setuptools.setup(
     py_modules=["smd_gateway"],
     packages=setuptools.find_packages(exclude=["tests", "tests.*"]),
     install_requires=[
-        "pyserial>=3.0",
-        "acrome-smd>=1.0"
+        "pyserial",
+        "acrome-smd"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.7',
+    python_requires='>=3.8',
 )
