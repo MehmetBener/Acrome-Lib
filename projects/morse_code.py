@@ -185,5 +185,5 @@ class MorseGUI(tk.Tk):
         self.hw.close()
         self.destroy()
 
-if __name__ == "__main__":
+def run():
     MorseGUI().mainloop()
