@@ -1,132 +1,205 @@
+[![PyPI version](https://img.shields.io/pypi/v/acrome-smd-python.svg)](https://pypi.org/project/acrome-smd-python/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.txt)
+[![Build Status](https://github.com/MehmetBener/acrome-lib/actions/workflows/python-publish.yml/badge.svg)](https://github.com/MehmetBener/acrome-lib/actions)
 
 # acrome-lib
 
-**acrome-lib** is a Python library for interfacing with the Acrome SMD Red hardware platform. It provides a high‑level `SMDGateway` class to manage the USB gateway and a collection of module wrappers for all supported add‑on devices (buttons, sensors, actuators, motors, etc.).
+**acrome-lib** is a Python library for interfacing with the Acrome SMD Red hardware platform. It provides a high‑level gateway class to manage the USB gateway and a set of device wrappers for sensors, actuators, and inputs. The library is published on PyPI under the name **acrome-smd-python**.
+
+---
+
+## Table of Contents
+
+1. [Features](#features)
+2. [Installation](#installation)
+3. [Quick Start](#quick-start)
+4. [Core Concepts](#core-concepts)
+5. [Module Wrappers](#module-wrappers)
+6. [Example Applications](#example-applications)
+7. [Configuration & Testing](#configuration--testing)
+8. [Contributing](#contributing)
+9. [Changelog](#changelog)
+10. [License](#license)
 
 ---
 
 ## Features
 
-* **Automatic module discovery** (with fallback to `DEFAULT_MODULES`)
-* **Convenient wrappers** for:
-
-  * Digital inputs: Button, Joystick button
-  * Analog inputs: Potentiometer, QTR line sensor array, Light sensor, Distance sensor, IMU (accelerometer & gyroscope)
-  * Actuators: RGB LED, Buzzer, Motor (PWM, velocity, position, torque)
-* **Extensible**: easily add new module types by following the wrapper pattern
-* **Built‑in testing**: standalone test scripts under `tests/` ensure compatibility
+* **Auto-Discovery** of connected SMD modules (with fallback to a default list)
+* **Unified API** for digital inputs, analog sensors, and actuators
+* **Extensible architecture**: add new device wrappers easily
+* **Thread-safe** serial communication over USB
+* **GUI examples** for common demos (Simon Says, Morse Code)
+* **PyPI package**: install via `pip install acrome-smd-python`
 
 ---
 
 ## Installation
 
-1. Clone this repository:
-
-   ```bash
-   git clone https://github.com/MehmetBener/acrome-lib.git
-   cd acrome-lib
-   ```
-
-2. (Optional) Install in editable mode:
-
-   ```bash
-   pip install -e .
-   ```
-
-3. Ensure you have the Acrome Python SDK (`smd.red`) installed via pip and your USB gateway drivers.
-
----
-
-## Usage
-
-### 1. Initialize the Gateway
-
-```python
-from smd_gateway import SMDGateway
-from lib.usb_port_finder import USBPortFinder
-
-# Auto‑detect the USB gateway
-port = USBPortFinder.first_gateway()
-if port is None:
-    raise RuntimeError("No USB gateway connected")
-
-# Create gateway (overriding auto‑scan with DEFAULT_MODULES)
-gw = SMDGateway(port, modules_override=None)
-```
-
-### 2. Create and Use Module Wrappers
-
-```python
-from lib.button import Button
-from lib.led import Led
-from lib.distance import DistanceSensor
-# ... other wrappers ...
-
-# Example: Button on module index 0 (Button_5)
-btn = Button(gw, module_id=0)
-if btn.is_pressed():
-    print("Button pressed!")
-
-# Example: Blink LED (module index 7 = RGB_5)
-led = Led(gw, module_id=7)
-led.blink(on_rgb=(0,255,0), off_rgb=(0,0,0), period=0.3, cycles=5)
-
-# Example: Read distance (module index 4 = Distance_1)
-dist = DistanceSensor(gw, module_id=4)
-print("Distance (cm):", dist.read_cm())
-```
-
-### 3. Motor Control
-
-```python
-from lib.motor import Motor
-from smd.red import OperationMode
-
-motor = Motor(gw, cpr=6533)
-
-# PWM control
-motor.run_pwm(duty=50, duration_s=1.0)
-
-# Velocity control
-motor.set_operation_mode(OperationMode.Velocity)
-motor.enable_torque(True)
-motor.set_shaft_rpm(120)
-
-# Cleanup
-gw.close()
-```
-
----
-
-## Testing
-
-All module wrappers include standalone test scripts under `tests/`. To run tests:
+Install the library from PyPI (package name: **acrome-smd-python**):
 
 ```bash
-cd acrome-lib
-# Example: test the QTR sensor wrapper
-env/bin/python tests/test_qtr.py
+pip install acrome-smd-python
 ```
 
-Each script auto‑adds the project root to `PYTHONPATH` and uses `modules_override` to fix module IDs.
+Or install from source:
+
+```bash
+git clone https://github.com/MehmetBener/acrome-lib.git
+cd acrome-lib
+pip install -e .
+```
+
+> **Requirements:**
+>
+> * Python 3.8 or newer
+> * `pyserial` (installed automatically)
+> * Acrome USB gateway drivers
+
+---
+
+## Quick Start
+
+1. **Detect USB gateway**:
+
+   ```python
+   from acrome_lib.utils import find_usb_port
+   from acrome_lib.gateway import SMDGateway
+
+   port = find_usb_port()
+   if port is None:
+       raise RuntimeError("No USB gateway found")
+   ```
+
+2. **Initialize gateway**:
+
+   ```python
+   gw = SMDGateway(port)
+   ```
+
+3. **List modules**:
+
+   ```python
+   modules = gw.list_modules()
+   print("Detected modules:", modules)
+   ```
+
+4. **Control devices**:
+
+   ```python
+   from acrome_lib.led import RGBLed
+   from acrome_lib.buzzer import Buzzer
+
+   # Blink LED (module index 5)
+   led = RGBLed(gw, module_id=5)
+   led.set_color(255, 0, 0)  # Red
+   led.off()
+
+   # Beep buzzer
+   buzzer = Buzzer(gw, module_id=5)
+   buzzer.beep(0.2)
+   ```
+
+---
+
+## Core Concepts
+
+### `SMDGateway`
+
+Manages the USB serial connection and module scanning:
+
+* `SMDGateway(port, modules_override=None)` — create gateway
+* `gw.list_modules()` — return list of detected module identifiers
+* `gw.close()` — close the serial port cleanly
+
+### Base Device Wrapper
+
+All device classes inherit from a common base:
+
+* Constructor signature: `(gateway, module_id)`
+* Common methods: `.read()`, `.write()`, `.is_attached`
+
+---
+
+## Module Wrappers
+
+| Category     | Class            | Description                        |
+| ------------ | ---------------- | ---------------------------------- |
+| **Digital**  | `Button`         | Push button input                  |
+|              | `JoystickBtn`    | Joystick press button              |
+| **Analog**   | `Potentiometer`  | Rotary potentiometer               |
+|              | `LightSensor`    | Ambient light measurement          |
+|              | `DistanceSensor` | Ultrasonic distance measurement    |
+|              | `QTRSensor`      | Infrared line sensor array         |
+|              | `IMUSensor`      | Accelerometer & gyroscope          |
+| **Actuator** | `RGBLed`         | 3-channel PWM LED                  |
+|              | `Buzzer`         | Piezo buzzer module                |
+|              | `Motor`          | DC motor (PWM, velocity, position) |
+
+> See full API docs in the `docs/` directory for usage details.
+
+---
+
+## Example Applications
+
+* **Simon Says Game**: Memory-sequence GUI demo using LEDs and buzzer.
+  Path: `examples/simon_says.py`
+* **Morse Code Transmitter**: GUI for sending text as Morse via LED/buzzer.
+  Path: `examples/morse_gui.py`
+
+Use these as starting points for custom interfaces.
+
+---
+
+## Configuration & Testing
+
+* **Override modules**:
+
+  ```python
+  ```
+
+gw = SMDGateway(port, modules\_override=\[
+'Button\_5', 'Light\_5', 'Buzzer\_5', ...
+])
+
+````
+
+- **Run tests**:
+```bash
+pytest tests/
+````
+
+> Install test dependencies with `pip install -e .[test]` if you define them.
 
 ---
 
 ## Contributing
 
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature/YourFeature`.
-3. Commit your changes: `git commit -m "Add your feature"`.
-4. Push to your fork: `git push origin feature/YourFeature`.
-5. Open a Pull Request.
+Contributions are welcome:
 
-Please run existing tests and add new ones for any functionality you introduce.
+1. Fork the repo
+2. Create a branch: `git checkout -b feature/YourFeature`
+3. Commit: `git commit -m "Add YourFeature"`
+4. Push: `git push origin feature/YourFeature`
+5. Open a Pull Request
+
+Refer to [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+---
+
+## Changelog
+
+### v0.1.0 (2025-06-18)
+
+* Initial PyPI release as **acrome-smd-python**
+* Core `SMDGateway` and all module wrappers
+* GUI examples: Simon Says & Morse Code
+* CI workflow for testing, build & publish
 
 ---
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE.txt) for details.
+Distributed under the MIT License. See [LICENSE.txt](LICENSE.txt) for details.
 
 ---
