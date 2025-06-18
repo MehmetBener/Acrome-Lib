@@ -136,54 +136,5 @@ def test_rgb_led_set_color(monkeypatch):
  assert gw.cmds == [(1, 2, 3)]
 ````
 
----
 
-## Pull Request Process
 
-1. **Branch** from `main`:
-
-   ```bash
-   ```
-
-git checkout -b feature/your-feature-name
-
-````
-2. **Make changes** in your branch.
-3. **Commit** using clear messages:
-```bash
-git commit -m "Add support for new sensor XYZ"
-````
-
-4. **Push** to your fork:
-
-   ```bash
-   ```
-
-git push origin feature/your-feature-name
-
-```
-5. **Open a Pull Request** against `MehmetBener/acrome-lib:main` with:
-- A descriptive title.
-- Summary of changes.
-- Link to related issues (if any).
-
----
-
-## Review & Merge
-
-- Automated tests must pass on CI.
-- At least one approving review is required.
-- Maintain backward compatibility for public APIs.
-- After merge, the `main` branch will trigger the build & publish workflow.
-
----
-
-## Code of Conduct
-
-By participating, you agree to abide by the [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/). Please be respectful, inclusive, and constructive.
-
----
-
-Thank you for helping make **acrome-lib** even better! 🎉
-
-```
