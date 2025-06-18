@@ -16,7 +16,8 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=["tests", "tests.*"]),
     install_requires=[
         "pyserial>=3.0",
-        "acrome-smd>=1.0"
+        "acrome-smd>=1.0",
+        "tkinter"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
