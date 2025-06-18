@@ -1,6 +1,5 @@
 [![PyPI version](https://img.shields.io/pypi/v/acrome-smd-python.svg)](https://pypi.org/project/acrome-smd-python/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.txt)
-[![Build Status](https://github.com/MehmetBener/acrome-lib/actions/workflows/python-publish.yml/badge.svg)](https://github.com/MehmetBener/acrome-lib/actions)
 
 # acrome-lib
 
