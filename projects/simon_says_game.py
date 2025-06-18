@@ -69,7 +69,7 @@ class SimonSaysApp(tk.Tk):
         self.user_index = 0
         
         self.device.led_color(*COLORS[0][1])
-        self.device.beep(0.1)
+        self.device.beep(0.7)
         self.device.led_off()
         time.sleep(1.0)
         
@@ -151,3 +151,4 @@ if __name__ == '__main__':
     app = SimonSaysApp(device)
     app.protocol("WM_DELETE_WINDOW", lambda: (device.close(), app.destroy()))
     app.mainloop()
+
