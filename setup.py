@@ -16,7 +16,7 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=["tests", "tests.*"]),
     install_requires=[
         "pyserial",
-        "acrome-smd"
+        "smd-red"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
