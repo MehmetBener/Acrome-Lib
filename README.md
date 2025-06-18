@@ -150,28 +150,6 @@ Use these as starting points for custom interfaces.
 
 ---
 
-## Configuration & Testing
-
-* **Override modules**:
-
-  ```python
-  ```
-
-gw = SMDGateway(port, modules\_override=\[
-'Button\_5', 'Light\_5', 'Buzzer\_5', ...
-])
-
-````
-
-- **Run tests**:
-```bash
-pytest tests/
-````
-
-> Install test dependencies with `pip install -e .[test]` if you define them.
-
----
-
 ## Contributing
 
 Contributions are welcome:
