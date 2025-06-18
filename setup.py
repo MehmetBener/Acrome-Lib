@@ -14,14 +14,14 @@ setuptools.setup(
     url="https://github.com/MehmetBener/acrome-lib",
     py_modules=["smd_gateway"],
     packages=setuptools.find_packages(exclude=["tests", "tests.*"]),
-    install_requires=[
-        "pyserial",
-        "smd-red"
+    install_requires=install_requires=[
+        "pyserial>=3.0",
+        "acrome-smd>=1.0"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.8',
+    python_requires='>=3.7',
 )
