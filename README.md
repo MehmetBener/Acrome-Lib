@@ -135,7 +135,6 @@ All device classes inherit from a common base:
 |              | `Buzzer`         | Piezo buzzer module                |
 |              | `Motor`          | DC motor (PWM, velocity, position) |
 
-> See full API docs in the `docs/` directory for usage details.
 
 ---
 
