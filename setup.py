@@ -17,7 +17,7 @@ setuptools.setup(
     install_requires=[
         "pyserial>=3.0",
         "acrome-smd>=1.0",
-        "tkinter"
+        "tk"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
