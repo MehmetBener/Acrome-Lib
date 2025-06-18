@@ -15,10 +15,9 @@
 4. [Core Concepts](#core-concepts)
 5. [Module Wrappers](#module-wrappers)
 6. [Example Applications](#example-applications)
-7. [Configuration & Testing](#configuration--testing)
-8. [Contributing](#contributing)
-9. [Changelog](#changelog)
-10. [License](#license)
+7. [Contributing](#contributing)
+8. [Changelog](#changelog)
+9. [License](#license)
 
 ---
 
