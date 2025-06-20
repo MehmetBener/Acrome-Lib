@@ -3,7 +3,7 @@
 
 # acrome-lib
 
-**acrome-lib** is a Python library for interfacing with the Acrome SMD Red hardware platform. It provides a high‑level gateway class to manage the USB gateway and a set of device wrappers for sensors, actuators, and inputs. The library is published on PyPI under the name **acrome-smd-python**.
+**acrome-lib** is a Python library for interfacing with the Acrome SMD Red hardware platform manufactured and provided by Acrome Robotics. It provides a high‑level gateway class to manage the USB gateway and a set of device wrappers for sensors, actuators, and inputs. The library is published on PyPI under the name **acrome-smd-python**.
 
 ---
 
