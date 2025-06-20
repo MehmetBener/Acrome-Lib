@@ -121,18 +121,18 @@ All device classes inherit from a common base:
 
 ## Module Wrappers
 
-| Category     | Class            | Description                        |
-| ------------ | ---------------- | ---------------------------------- |
-| **Digital**  | `Button`         | Push button input                  |
-|              | `JoystickBtn`    | Joystick press button              |
-| **Analog**   | `Potentiometer`  | Rotary potentiometer               |
-|              | `LightSensor`    | Ambient light measurement          |
-|              | `DistanceSensor` | Ultrasonic distance measurement    |
-|              | `QTRSensor`      | Infrared line sensor array         |
-|              | `IMUSensor`      | Accelerometer & gyroscope          |
-| **Actuator** | `RGBLed`         | 3-channel PWM LED                  |
-|              | `Buzzer`         | Piezo buzzer module                |
-|              | `Motor`          | DC motor (PWM, velocity, position) |
+| Category        | Class            | Description                        |
+| --------------- | ---------------- | ---------------------------------- |
+| **Digital In**  | `Button`         | Push button input                  |
+|                 | `JoystickBtn`    | Joystick press button              |
+| **Analog In**   | `Potentiometer`  | Rotary potentiometer               |
+|                 | `LightSensor`    | Ambient light measurement          |
+|                 | `DistanceSensor` | Ultrasonic distance measurement    |
+|                 | `QTRSensor`      | Infrared line sensor array         |
+|                 | `IMUSensor`      | Accelerometer & gyroscope          |
+| **Actuator**    | `RGBLed`         | 3-channel PWM LED                  |
+|                 | `Buzzer`         | Piezo buzzer module                |
+|                 | `Motor`          | DC motor (PWM, velocity, position) |
 
 
 ---
