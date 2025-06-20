@@ -117,7 +117,7 @@ class MorseGUI(tk.Tk):
         style.configure("Custom.Horizontal.TProgressbar", background="#27ae60")
 
         # Header
-        header = tk.Label(self, text="🔊 Morse Code Transmitter", font=("Helvetica", 20, "bold"),
+        header = tk.Label(self, text="Morse Code Transmitter", font=("Helvetica", 20, "bold"),
                           fg="white", bg=self['bg'])
         header.pack(pady=(15, 10))
 
